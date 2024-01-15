@@ -2,7 +2,8 @@ package org.example;
 
 import java.sql.*;
 public class DBconector {
-    public static boolean checkPassword(String dbPassword) {
+    static ResultSet resultSet;
+    public static boolean checkPassword(String dbPassword) throws SQLException {
         if(dbPassword.equals(Login.password)) {
             System.out.println("Верный пароль!");
             PasswordHashingExample.Vhod();
@@ -24,13 +25,14 @@ public class DBconector {
             try {
                 String request = "SELECT password FROM users";
                 Statement statement = connection.createStatement();
-                ResultSet resultSet = statement.executeQuery(request);
+                resultSet = statement.executeQuery(request);
                 String dbPassword;
                 while (resultSet.next()) {
                     dbPassword = resultSet.getString("password");
                     checkPassword(dbPassword);
 
                 }
+
             }
             catch (SQLException exception) {
                 System.out.println(exception);
