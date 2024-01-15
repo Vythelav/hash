@@ -1,10 +1,14 @@
 package org.example;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 
 public class PasswordHashingExample {
-    Login login = new Login();
+
+
+public static void Vhod(){
+    
 
     MessageDigest md;
 
@@ -15,6 +19,8 @@ public class PasswordHashingExample {
             throw new RuntimeException(e);
         }
     }
-    byte[] hash = md.digest(login.password.getBytes());
+    byte[] hash = md.digest(Login.password.getBytes());
     String encodedHash = Base64.getEncoder().encodeToString(hash);
+    System.out.println("Хэш-значение пароля: " + encodedHash);
+}
 }
